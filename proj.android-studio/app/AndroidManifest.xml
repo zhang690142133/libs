@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	package="xsg.lychee.richalpha"
+	android:installLocation="auto">
+
+	<uses-feature android:glEsVersion="0x00020000" />
+
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.FLASHLIGHT" />
+	<uses-permission android:name="android.permission.RECORD_AUDIO" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.RECEIVE_SMS" />
+	<uses-permission android:name="android.permission.READ_SMS" />
+
+
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:largeHeap="true"
+		android:usesCleartextTraffic="true">
+
+		<!-- Fcm 推播設置 see (https://firebase.google.com/docs/cloud-messaging/android/client?hl=zh-cn) -->
+
+		<!-- [START 設置推播顯示的 icon & color (optional)] -->
+		<!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+			 See README(https://goo.gl/l4GJaQ) for more. -->
+		<!--<meta-data-->
+		<!--android:name="com.google.firebase.messaging.default_notification_icon"-->
+		<!--android:resource="@drawable/ic_stat_ic_notification" />-->
+		<!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+			 notification message. See README(https://goo.gl/6BKBk7) for more. -->
+		<!--<meta-data-->
+		<!--android:name="com.google.firebase.messaging.default_notification_color"-->
+		<!--android:resource="@color/colorAccent" />-->
+		<!-- [END 設置推播顯示的 icon & color] -->
+
+		<!-- [START 設置推播通知渠道 (optional)] -->
+		<!--<meta-data-->
+		<!--android:name="com.google.firebase.messaging.default_notification_channel_id"-->
+		<!--android:value="@string/default_notification_channel_id" />-->
+		<!-- [END 設置推播通知渠道] -->
+
+		<service
+			android:name=".service.MyFirebaseMessagingService"
+			android:enabled="true"
+			android:exported="false">
+			<intent-filter>
+				<action android:name="com.google.firebase.MESSAGING_EVENT" />
+			</intent-filter>
+		</service>
+		<meta-data
+			android:name="android.max_aspect"
+			android:value="2.1" />
+
+		<!-- 部分android 机型需要在这里配置刘海使用情况-->
+		<meta-data
+			android:name="android.notch_support"
+			android:value="true" />
+		<meta-data
+			android:name="android.app.lib_name"
+			android:value="cocos2djs" />
+
+		<activity
+			android:name=".AppActivity"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:label="@string/app_name"
+			android:launchMode="singleTask"
+			android:screenOrientation="portrait"
+			android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+			<intent-filter
+				android:autoVerify="true"
+				tools:targetApi="m">
+				<action android:name="android.intent.action.VIEW" />
+
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+
+				<data
+					android:host="game.lychee.wz3.bet"
+					android:scheme="https" />
+				<data
+					android:host="slotstest.onelink.me"
+					android:scheme="https" />
+			</intent-filter>
+		</activity>
+
+		<!--Facebook-->
+		<activity
+			android:name="com.facebook.FacebookActivity"
+			android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+			android:label="@string/app_name" />
+
+		<meta-data
+			android:name="com.facebook.sdk.ApplicationId"
+			android:value="@string/facebook_app_id_rich" />
+
+		<activity
+			android:name="com.facebook.CustomTabActivity"
+			android:exported="true">
+			<intent-filter><action android:name="android.intent.action.VIEW" />
+
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+
+				<data android:scheme="@string/fb_login_protocol_scheme_rich" />
+			</intent-filter>
+		</activity>
+
+		<provider
+			android:name="com.facebook.FacebookContentProvider"
+			android:authorities="com.facebook.app.FacebookContentProvider${FACEBOOK_APP_ID_RICH}"
+			android:exported="true" />
+
+		<!--QR Code-->
+		<activity
+			android:name="com.google.zxing.activity.CaptureActivity"
+			android:launchMode="singleTask"
+			android:theme="@style/AppTheme" />
+
+		<activity
+			android:name="com.google.zxing.activity.QRCodeActivity"
+			android:launchMode="singleTop"
+			android:theme="@style/AppTheme"
+			android:windowSoftInputMode="stateAlwaysHidden" />
+
+		<!-- for appsflyer -->
+		<receiver
+			android:name="com.appsflyer.MultipleInstallBroadcastReceiver"
+			android:exported="true">
+
+			<intent-filter>
+
+				<action android:name="com.android.vending.INSTALL_REFERRER" />
+
+			</intent-filter>
+		</receiver>
+
+		<!-- for image picker -->
+		<activity
+			android:name=".imagePicker.cropimage.CropImage"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait"
+			android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+
+		<activity
+			android:name=".imagePicker.ImagePickerActivity"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait"
+			android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+
+		<provider
+			android:name="android.support.v4.content.FileProvider"
+			android:authorities="${applicationId}.provider"
+			android:exported="false"
+			android:grantUriPermissions="true">
+			<meta-data
+				android:name="android.support.FILE_PROVIDER_PATHS"
+				android:resource="@xml/provider_paths" />
+		</provider>
+	</application>
+
+</manifest>

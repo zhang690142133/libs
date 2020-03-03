@@ -1,0 +1,19 @@
+include ':libcocos2dx'
+project(':libcocos2dx').projectDir = new File(settingsDir, '../../cocos2d-x/cocos/platform/android/libcocos2dx')
+include ':appsflyer'
+project(':appsflyer').projectDir = new File(settingsDir, '../../../../../external/appsflyer/android')
+include ':payment'
+project(':payment').projectDir = new File(settingsDir, '../../../../../external/payment/android')
+include ':nativebridge'
+project(':nativebridge').projectDir = new File(settingsDir, '../../../../../external/nativebridge/android')
+include ':rich_alpha'
+project(':rich_alpha').projectDir = new File(settingsDir, 'app')
+
+/**
+ * 使用 Firebase BoM 将 Firebase SDK 添加到您的应用
+ *
+ * 对于 Gradle 5.0 及更高版本，将自动启用 BoM 支持
+ * 对于更早的 Gradle 版本，您必须启用 BoM 功能
+ * https://firebase.google.com/docs/android/setup?hl=zh-cn
+ */
+enableFeaturePreview('IMPROVED_POM_SUPPORT')

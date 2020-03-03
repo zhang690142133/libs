@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom">
+
+    <Button
+        android:id="@+id/camera"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+        android:text="@string/dailog_camera"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+    <Button
+        android:id="@+id/photo"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+        android:text="@string/dailog_photo"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+</LinearLayout>

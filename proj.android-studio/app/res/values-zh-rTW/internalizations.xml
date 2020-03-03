@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="qrcode_hint_scan">請將QR Code放入框架中，即可自動掃描</string>
+	<string name="qrcode_hint_show">對方僅需世運個行動條掃瞄器，並對準此行動條碼\n\n即可加入老子有錢國際版</string>
+	<string name="qrcode_photo">從相簿中選擇</string>
+	<string name="qrcode_tool">行動條碼掃瞄器</string>
+	<string name="qrcode_showmine">顯示行動條碼</string>
+	<string name="qrcode_scanning">掃瞄中\u2026</string>
+	<string name="qrcode_scan_error">識別失敗!</string>
+	<string name="qrcode_permission">二維碼掃描需要相機權限!</string>
+
+	<string name="img_picker_save" translatable="false">儲存</string>
+	<string name="img_picker_discard" translatable="false">捨棄</string>
+	<string name="img_picker_wait" translatable="false">等待中\u2026</string>
+	<string name="img_picker_wallpaper" translatable="false">等待中\u2026</string>
+	<string name="img_picker_saving" translatable="false">節能\u2026</string>
+	<string name="img_picker_select" translatable="false">選取</string>
+	<string name="img_picker_photo_permission" translatable="false">從相冊選擇圖片，需要打開相冊權限</string>
+	<string name="img_picker_camera_permission" translatable="false">從相機選擇圖片，需要打開相機權限</string>
+
+	<string name="need_photo_permission" translatable="false">需要打開相冊權限</string>
+	<string name="need_camera_permission" translatable="false">需要打開相機權限</string>
+	<string name="need_notify_permission" translatable="false">需要通知權限</string>
+
+	<string name="dailog_camera" translatable="false">相機</string>
+	<string name="dailog_photo" translatable="false">相冊</string>
+
+	<!--权限申请-->
+	<string name="to_open" translatable="false">去設置</string>
+	<string name="cancel" translatable="false">取消</string>
+
+	<!--时间选择器-->
+	<string name="time_picker_cancel" translatable="false">取消</string>
+	<string name="time_picker_sure" translatable="false">確定</string>
+	<string name="time_picker_title" translatable="false">選擇日期</string>
+	<string name="time_picker_year" translatable="false">年</string>
+	<string name="time_picker_month" translatable="false">月</string>
+	<string name="time_picker_day" translatable="false">日</string>
+	<string name="time_picker_hour" translatable="false">時</string>
+	<string name="time_picker_minute" translatable="false">分</string>
+
+	<!--通知-->
+	<string name="activity_inform" translatable="false">活动</string>
+</resources>

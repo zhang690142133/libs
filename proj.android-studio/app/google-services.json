@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "485034859191",
+    "firebase_url": "https://lychee-dev.firebaseio.com",
+    "project_id": "lychee-dev",
+    "storage_bucket": "lychee-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485034859191:android:b631f7dc92010a00",
+        "android_client_info": {
+          "package_name": "xsg.lychee.richalpha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "485034859191-8i5v7tks3o0arn9ipglf2lo94vl6lg6q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xsg.lychee.richalpha",
+            "certificate_hash": "b79197a9ba4551396f0f32201d2c7de76712a6f4"
+          }
+        },
+        {
+          "client_id": "485034859191-7h8qvv1juoh9hik8l7m7b80l5b1di2d2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeuYtmnYDFN4owcMB6uUqQ8-qu3Me79c4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "485034859191-10gvj8e6f2llf2huvghci65as44bo07l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "485034859191-jfpmce3hfrcmdiio3fmvtaj7n18bsgv4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "xsg.lychee.richalpha"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485034859191:android:b9f741916e7a8056410b32",
+        "android_client_info": {
+          "package_name": "xsg.lychee.richapk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "485034859191-7h8qvv1juoh9hik8l7m7b80l5b1di2d2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeuYtmnYDFN4owcMB6uUqQ8-qu3Me79c4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "485034859191-10gvj8e6f2llf2huvghci65as44bo07l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "485034859191-jfpmce3hfrcmdiio3fmvtaj7n18bsgv4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "xsg.lychee.richalpha"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

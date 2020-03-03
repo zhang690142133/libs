@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--二维码-->
+    <string name="qrcode_hint_scan">Please put the QR Code in the frame to scan</string>
+    <string name="qrcode_hint_show">Ohter player only scan the QR Code\n\nenjoy the game</string>
+    <string name="qrcode_photo">photo</string>
+    <string name="qrcode_tool">QR Code</string>
+    <string name="qrcode_showmine">My QR Code</string>
+    <string name="qrcode_scanning">loading\u2026</string>
+    <string name="qrcode_scan_error">Scan failed!</string>
+    <string name="qrcode_permission">QR code scanning requires camera permissions!</string>
+
+    <!--截图-->
+    <string name="img_picker_save" translatable="false">save</string>
+    <string name="img_picker_discard" translatable="false">discard</string>
+    <string name="img_picker_wait" translatable="false">wait\u2026</string>
+    <string name="img_picker_wallpaper" translatable="false">wait\u2026</string>
+    <string name="img_picker_saving" translatable="false">saving\u2026</string>
+    <string name="img_picker_select" translatable="false">select</string>
+    <string name="img_picker_photo_permission" translatable="false">Select an image from the album, you need the album permission</string>
+    <string name="img_picker_camera_permission" translatable="false">Select a picture from the camera and need the camera permissions</string>
+
+    <string name="need_photo_permission" translatable="false">need the album permission</string>
+    <string name="need_camera_permission" translatable="false">need the camera permissions</string>
+    <string name="need_notify_permission" translatable="false">need the notification permissions</string>
+
+    <string name="dailog_camera" translatable="false">CAMERA</string>
+    <string name="dailog_photo" translatable="false">PHOTO</string>
+
+    <!--权限申请-->
+    <string name="to_open" translatable="false">SETTING</string>
+    <string name="cancel" translatable="false">CANCEL</string>
+
+    <!--时间选择器-->
+    <string name="time_picker_cancel" translatable="false">CANCEL</string>
+    <string name="time_picker_sure" translatable="false">SURE</string>
+    <string name="time_picker_title" translatable="false">TimePicker</string>
+    <string name="time_picker_year" translatable="false">Y</string>
+    <string name="time_picker_month" translatable="false">M</string>
+    <string name="time_picker_day" translatable="false">d</string>
+    <string name="time_picker_hour" translatable="false">h</string>
+    <string name="time_picker_minute" translatable="false">m</string>
+
+    <!--通知-->
+    <string name="activity_inform" translatable="false">activity</string>
+</resources>
