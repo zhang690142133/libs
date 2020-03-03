@@ -15,7 +15,7 @@ public class VoiceManage {
     static{
         System.loadLibrary("lameSDK");
     }
-    private static VoiceRecorder voiceRecorder = null;
+    private static VoiceRecorderThread voiceRecorder = null;
     private static VoiceManage mInstance;
     public synchronized static VoiceManage getInstance()
     {
@@ -24,6 +24,8 @@ public class VoiceManage {
         }
         return mInstance;
     }
+    //是否边录边转码mp3
+    public static boolean isEncodeWhenRecording = false;
     // 采样位数, 8, 16, Web仅支持16位,android仅支持16位
     private  int bit = 16;
     // 采样率, 8,000 Hz - 电话所用采样率
@@ -31,9 +33,11 @@ public class VoiceManage {
     // 通道数(1-2)
     private int numChannels = 2;
     // 是否需要采集音量
-    private  boolean needCollectVolume = false;
+    public static boolean needCollectVolume = false;
     // 是否正在录音
-    private  boolean isRecording = false;
+    public static boolean isRecording = false;
+    // 是否要保存
+    public static boolean needSave = false;
     /**
      * 对外发送语音音量
      * @param volume
@@ -63,20 +67,15 @@ public class VoiceManage {
                 }
             }
             if (obj.has("needCollectVolume")) {
-                needCollectVolume = obj.getBoolean("needCollectVolume");
+                VoiceManage.needCollectVolume = obj.getBoolean("needCollectVolume");
+            }
+            if (obj.has("isEncodeWhenRecording")) {
+                VoiceManage.isEncodeWhenRecording = obj.getBoolean("isEncodeWhenRecording");
             }
 
         } catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    /**
-     * 设置录音状态
-     * @param state
-     */
-    public void setRecordState(boolean state){
-        isRecording = state;
     }
 
     /**
@@ -89,12 +88,12 @@ public class VoiceManage {
             Log.d("VoiceManage","未获取录音权限");
             return false;
         }
-        if(isRecording){
+        if(VoiceManage.isRecording){
             Log.d("VoiceManage","正在录音中");
             return false;
         }
-        voiceRecorder = new VoiceRecorder(bit,sampleRate,numChannels,file);
-        voiceRecorder.start();
+        new VoiceRecorderThread(bit,sampleRate,numChannels,file).start();
+        VoiceManage.isRecording = true;
         return true;
     }
     /**
@@ -102,10 +101,8 @@ public class VoiceManage {
      */
     public void stopRecord(){
         Log.d("VoiceManage","停止录音 "+isRecording);
-        if(isRecording){
-            voiceRecorder.close();
-        }
-        voiceRecorder = null;
+        VoiceManage.isRecording=false;
+        VoiceManage.needSave=true;
     }
 
     /**
@@ -113,10 +110,8 @@ public class VoiceManage {
      */
     public void cancelRecord(){
         Log.d("VoiceManage","取消录音 "+isRecording);
-        if(isRecording){
-            voiceRecorder.cancel();
-        }
-        voiceRecorder = null;
+        VoiceManage.isRecording=false;
+        VoiceManage.needSave=false;
     }
 
 

@@ -22,7 +22,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class VoiceRecorder extends Thread{
+public class VoiceRecorderThread extends Thread{
+    static{
+        System.loadLibrary("lameSDK");
+    }
     // 采样位数, 8, 16, Web仅支持16位,android仅支持16位
     private  int bit = 16;
     // 采样率, 8,000 Hz - 电话所用采样率
@@ -34,12 +37,13 @@ public class VoiceRecorder extends Thread{
     // 缓冲区字节大小
     private int bufferSizeInBytes = 0;
     private AudioRecord audioRecord=null;
-    private byte[] audiodata=null;
+    private byte[] mp3data=null;
+    private byte[] rawdata=null;
     private boolean needWrite = true;
     /**
      * 线程通讯的handler
      */
-    public  VoiceRecorder(int bit,int sampleRate,int numChannels,String file){
+    public  VoiceRecorderThread(int bit,int sampleRate,int numChannels,String file){
         this.bit = bit;
         this.sampleRate = sampleRate;
         this.numChannels = numChannels;
@@ -59,13 +63,12 @@ public class VoiceRecorder extends Thread{
         int channel = numChannels == 1 ? AudioFormat.CHANNEL_IN_MONO : AudioFormat.CHANNEL_IN_STEREO;
         // 获得缓冲区字节大小
         bufferSizeInBytes = AudioRecord.getMinBufferSize(sampleRate, channel, pcmBit);
+        LameSDK.init(sampleRate,numChannels,sampleRate,bit);
         return new AudioRecord(MediaRecorder.AudioSource.MIC, sampleRate, channel, pcmBit, bufferSizeInBytes);
     }
     @Override
     public void run() {
         super.run();
-        needWrite = true;
-        VoiceManage.getInstance().setRecordState(true);
         Log.d("VoiceRecorder","开始录音");
         audioRecord.startRecording();
         dealAudioData();
@@ -77,14 +80,20 @@ public class VoiceRecorder extends Thread{
      * 录音数据处理
      */
     private void dealAudioData(){
-        audiodata = new byte[bufferSizeInBytes];
+        rawdata = new byte[bufferSizeInBytes];
+        mp3data = new byte[sampleRate/20+7200];
         long dataLength = 0;
-        while(audioRecord!=null&&audioRecord.getRecordingState()==AudioRecord.RECORDSTATE_RECORDING){
+        while(VoiceManage.isRecording){
             try{
-                dataLength  = audioRecord.read(audiodata, 0, bufferSizeInBytes);
-                if(AudioRecord.ERROR_INVALID_OPERATION != dataLength ){
-                    long volume = VoiceTools.getVolume(audiodata,dataLength);
-                    VoiceManage.getInstance().sendVolume(volume);
+                dataLength  = audioRecord.read(rawdata, 0, bufferSizeInBytes);
+                if(AudioRecord.ERROR_INVALID_OPERATION != dataLength){
+                    if(VoiceManage.needCollectVolume){
+                        long volume = VoiceTools.getVolume(rawdata,dataLength);
+                        VoiceManage.getInstance().sendVolume(volume);
+                    }
+                    if(VoiceManage.isEncodeWhenRecording){//边录边转
+                        LameSDK.encode();
+                    }
                 }
                 //Thread.sleep(100);
             }catch (Exception e){
